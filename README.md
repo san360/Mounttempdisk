@@ -1,7 +1,7 @@
 # Mounttempdisk
 
 * Build image based on docker file
-* Deploy daemonset to AKS pod
+* Deploy daemonset to AKS nodes
 
 # Assumptions
 * AKS mounts temporary disk to /mnt path
