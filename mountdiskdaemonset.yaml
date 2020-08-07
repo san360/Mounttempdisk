@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: mounttempdisk
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: mounttempdisk
+  namespace: mounttempdisk
+spec:
+  selector:
+    matchLabels:
+      job: mounttempdisk
+  template:
+    metadata:
+      labels:
+        job: mounttempdisk
+    spec:
+      nodeSelector:
+        "kubernetes.io/os": "linux"
+      hostPID: true
+      restartPolicy: Always
+      containers:
+      - image: san360/mountdisk:0.5
+        name: mounttempdisk
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - name: host-temp-mount
+          mountPath: /host
+      volumes:
+      - name: host-temp-mount
+        hostPath:
+          path: /tmp
