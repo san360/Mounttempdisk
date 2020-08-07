@@ -5,7 +5,7 @@ DOCKERPATH="/var/lib/docker"
 #AKS always mounts temp disk at /mnt
 TEMPDISKMOUNT="/mnt"
 
-#Fnction to check if path is mounted
+#Function to check if path is mounted
 isMounted() {
     findmnt -rno SOURCE,TARGET "$1" >/dev/null;
 }
